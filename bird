@@ -1,0 +1,27 @@
+onEvent("conBut", "click", function( ) {
+  setScreen("screen2");
+});
+
+var birdColor = getColumn("100 Birds of the World", "Primary Color");
+var birdImg = getColumn("100 Birds of the World", "Image of Bird");
+var randomIndex;
+var counter = 0;
+
+onEvent("genBut", "click", function( ) {
+  getBirdimage();
+  randomIndex = randomNumber(0, birdImg.length - 1);
+  setProperty("birdPic", "image", birdImg[randomIndex]);
+  counter = counter + 1;
+  setProperty("counter", "text", counter);
+});
+//I need to filter the bird image to corresponding bird color
+function getBirdimage(color) {
+  var birdData = birdImg;
+  for (var i = 0; i < birdData.length; i++) {
+    if ((birdData[i])[0] === color) {
+      return birdData[i][1];
+    }
+  }
+}
+
+
